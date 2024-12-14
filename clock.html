@@ -1,0 +1,42 @@
+<link rel="stylesheet" href="clock.css">
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Clock</title>
+    </head>
+    <body>
+        <div class="clock">
+            <div class="number top middle">12</div>
+            <div class="number top right">3</div>
+            <div class="number bottom middle">6</div>
+            <div class="number middle left">9</div>
+            <div class="hand hour" id="hour"></div>
+            <div class="hand minute" id="minute"></div>
+            <div class="hand second" id="second"></div>
+            <div class="center-dot"></div>
+        </div>
+    
+        <script>
+                const hourHand = document.getElementById('hour');
+    const minuteHand = document.getElementById('minute');
+    const secondHand = document.getElementById('second');
+
+
+    function updateClock() {
+    const now = new Date();
+
+    const hours = now.getHours();
+    const minutes = now.getMinutes();
+    const seconds = now.getSeconds();
+    const hourDegrees = (hours % 12) * 30 + (minutes / 60) * 30;  
+    const minuteDegrees = minutes * 6 + (seconds / 60) * 6;  
+    const secondDegrees = seconds * 6;  
+    hourHand.style.transform = `rotate(${hourDegrees + 90}deg)`; 
+minuteHand.style.transform = `rotate(${minuteDegrees + 90}deg)`;  
+secondHand.style.transform = `rotate(${secondDegrees + 90}deg)`;  
+    }
+    setInterval(updateClock, 1000);
+    updateClock();
+            </script>
+        </body>
+    </html>
